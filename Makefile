@@ -2,6 +2,9 @@ roms := \
 	pokered.gbc \
 	pokeblue.gbc \
 	pokeblue_debug.gbc
+	pokered-fr.gbc \
+	pokeblue-fr.gbc \
+	pokeblue_debug-fr.gbc
 patches := \
 	pokered.patch \
 	pokeblue.patch
@@ -51,8 +54,9 @@ all: $(roms)
 red:        pokered.gbc
 blue:       pokeblue.gbc
 blue_debug: pokeblue_debug.gbc
-red_vc:     pokered.patch
-blue_vc:    pokeblue.patch
+red-fr:     pokered.gbc
+blue-fr:    pokeblue.gbc
+blue_d-fr:  pokeblue_debug.gbc
 
 clean: tidy
 	find gfx \
@@ -72,9 +76,10 @@ tidy:
 	      $(patches:%.patch=vc/%.constants.sym) \
 	      $(pokered_obj) \
 	      $(pokeblue_obj) \
-	      $(pokered_vc_obj) \
-	      $(pokeblue_vc_obj) \
 	      $(pokeblue_debug_obj) \
+	      $(pokered-fr_obj) \
+	      $(pokeblue-fr_obj) \
+	      $(pokeblue_d-fr_obj) \
 	      rgbdscheck.o
 	$(MAKE) clean -C tools/
 
@@ -94,8 +99,9 @@ endif
 $(pokered_obj):        RGBASMFLAGS += -D _RED
 $(pokeblue_obj):       RGBASMFLAGS += -D _BLUE
 $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
-$(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
-$(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
+$(pokered-fr_obj):     RGBASMFLAGS += -D _RED -D _FRENCH
+$(pokeblue-fr_obj):    RGBASMFLAGS += -D _BLUE -D _FRENCH
+$(pokeblue_d-fr_obj):  RGBASMFLAGS += -D _BLUE -D _DEBUG -D _FRENCH
 
 %.patch: vc/%.constants.sym %_vc.gbc %.gbc vc/%.patch.template
 	tools/make_patch $*_vc.sym $^ $@
@@ -121,8 +127,9 @@ $(info $(shell $(MAKE) -C tools))
 $(foreach obj, $(pokered_obj), $(eval $(call DEP,$(obj),$(obj:_red.o=.asm))))
 $(foreach obj, $(pokeblue_obj), $(eval $(call DEP,$(obj),$(obj:_blue.o=.asm))))
 $(foreach obj, $(pokeblue_debug_obj), $(eval $(call DEP,$(obj),$(obj:_blue_debug.o=.asm))))
-$(foreach obj, $(pokered_vc_obj), $(eval $(call DEP,$(obj),$(obj:_red_vc.o=.asm))))
-$(foreach obj, $(pokeblue_vc_obj), $(eval $(call DEP,$(obj),$(obj:_blue_vc.o=.asm))))
+$(foreach obj, $(pokered-fr_obj), $(eval $(call DEP,$(obj),$(obj:_red-fr.o=.asm))))
+$(foreach obj, $(pokeblue-fr_obj), $(eval $(call DEP,$(obj),$(obj:_blue-fr.o=.asm))))
+$(foreach obj, $(pokeblue_d-fr_obj), $(eval $(call DEP,$(obj),$(obj:_blue_d-fr.o=.asm))))
 
 # Dependencies for VC files that need to run scan_includes
 %.constants.sym: %.constants.asm $(shell tools/scan_includes %.constants.asm) | includes.asm rgbdscheck.o
@@ -136,15 +143,17 @@ endif
 
 pokered_pad        = 0x00
 pokeblue_pad       = 0x00
-pokered_vc_pad     = 0x00
-pokeblue_vc_pad    = 0x00
 pokeblue_debug_pad = 0xff
+pokered-fr_pad     = 0x00
+pokeblue-fr_pad    = 0x00
+pokeblue_d-fr_pad  = 0xff
 
 pokered_opt        = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON RED"
 pokeblue_opt       = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE"
 pokeblue_debug_opt = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE"
-pokered_vc_opt     = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON RED"
-pokeblue_vc_opt    = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLUE"
+pokered-fr_opt     = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON ROUGE"
+pokeblue-fr_opt    = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLEUE"
+pokeblue_d-fr_opt  = -Cjv -n 0 -k 01 -l 0x33 -m 0x1B -r 03 -t "POKEMON BLEUE"
 
 %.gbc: $$(%_obj) layout.link
 	$(RGBLINK) -p $($*_pad) -d -m $*.map -n $*.sym -l layout.link -o $@ $(filter %.o,$^)

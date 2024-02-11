@@ -1,13 +1,19 @@
 To build the English versions: use
 `make red`
 `make blue`
+`make blue_debug`
 
 To build the French versions: use
 `make red-fr`
 `make blue-fr`
+`make blue_d-fr`
 
 To build them all: use
 `make`
+
+You cannot make the VC patches anymore.
+
+# Original readme
 
 This Romhack start from my port of the pokered-gbc to french to build upon.
 If you want a base experience of the pokered-gbc romhack in french, go there : https://github.com/Engezerstorung/pokered-gbc-fr
