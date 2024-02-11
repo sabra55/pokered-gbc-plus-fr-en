@@ -1,7 +1,7 @@
 roms := \
 	pokered.gbc \
 	pokeblue.gbc \
-	pokeblue_debug.gbc
+	pokeblue_debug.gbc \
 	pokered-fr.gbc \
 	pokeblue-fr.gbc \
 	pokeblue_debug-fr.gbc

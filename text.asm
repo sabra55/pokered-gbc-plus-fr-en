@@ -1,6 +1,7 @@
 SECTION "Text 1", ROMX
 
-INCLUDE "data/text/text_1.asm"
+multilang "data/text/fr/text_1.asm", \
+		  "data/text/en/text_1.asm"
 
 INCLUDE "text/ViridianForest.asm"
 INCLUDE "text/MtMoon1F.asm"
@@ -64,7 +65,8 @@ SECTION "Text 3", ROMX
 INCLUDE "text/RockTunnelB1F_2.asm"
 INCLUDE "text/SeafoamIslandsB4F.asm"
 
-INCLUDE "data/text/text_2.asm"
+multilang "data/text/fr/text_2.asm", \
+		  "data/text/en/text_2.asm"
 
 INCLUDE "text/DiglettsCaveRoute2.asm"
 INCLUDE "text/ViridianForestNorthGate.asm"
@@ -138,7 +140,8 @@ SECTION "Text 6", ROMX
 INCLUDE "text/Route24_2.asm"
 INCLUDE "text/Route25.asm"
 
-INCLUDE "data/text/text_3.asm"
+multilang "data/text/fr/text_3.asm", \
+		  "data/text/en/text_3.asm"
 
 INCLUDE "text/RedsHouse1F.asm"
 INCLUDE "text/BluesHouse.asm"
@@ -242,12 +245,14 @@ INCLUDE "text/SilphCo1F.asm"
 INCLUDE "text/SaffronPokecenter.asm"
 INCLUDE "text/MrPsychicsHouse.asm"
 
-INCLUDE "data/text/text_4.asm"
+multilang "data/text/fr/text_4.asm", \
+		  "data/text/en/text_4.asm"
 
 
 SECTION "Text 10", ROMX
 
-INCLUDE "data/text/text_5.asm"
+multilang "data/text/fr/text_5.asm", \
+		  "data/text/en/text_5.asm"
 
 INCLUDE "text/PalletTown.asm"
 INCLUDE "text/ViridianCity.asm"
@@ -260,12 +265,14 @@ INCLUDE "text/FuchsiaCity.asm"
 INCLUDE "text/CinnabarIsland.asm"
 INCLUDE "text/SaffronCity.asm"
 
-INCLUDE "data/text/text_6.asm"
+multilang "data/text/fr/text_6.asm", \
+		  "data/text/en/text_6.asm"
 
 
 SECTION "Text 11", ROMX
 
-INCLUDE "data/text/text_7.asm"
+multilang "data/text/fr/text_7.asm", \
+		  "data/text/en/text_7.asm"
 
 
 SECTION "Pokédex Text", ROMX
